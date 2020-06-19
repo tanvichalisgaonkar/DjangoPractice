@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from AppTwo.models import UserInfo
+from . import forms
+
 # Create your views here.
 def home(request):
 	dict_show = {'welcome_msg':'Welcome!',
@@ -14,7 +16,21 @@ def help(request):
 	return render(request,'help.html',context = dict_one)
 
 def user(request):
-	usr_list = UserInfo.objects.order_by('first_name')
-	dict_user = {'user_info' : 'Welcome to user info page',
-	'user_detail' : usr_list}
-	return render(request,'user.html',context = dict_user)
+	form = forms.SignUpForm()
+
+	if request.method == 'POST':
+		form = forms.SignUpForm(request.POST)
+
+		if form.is_valid():
+			print("Validation Success")
+			print("First Name: " +form.cleaned_data['first_name'])
+			print("Last Name: "  +form.cleaned_data['last_name'])
+			print("Mail: " +form.cleaned_data['email'])
+			new_user = form.save(commit = True)
+			return home(request)
+		else:
+			print("Invalid Form")
+
+	return render(request,"user.html",{'form':form})
+
+	

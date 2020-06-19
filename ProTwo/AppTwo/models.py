@@ -8,9 +8,5 @@ class UserInfo(models.Model):
 	last_name = models.CharField(max_length = 126)
 	email = models.EmailField(max_length = 260,unique = True)
 
-	info = [first_name,last_name,email]
-
-	def __str__(self):
-		return self.info
 
 
