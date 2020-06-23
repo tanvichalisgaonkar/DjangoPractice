@@ -9,13 +9,13 @@
 		<div class="container">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class = "navbar-brand "href="{% url 'index'  %}">DJANGO</a></li>
-				<li class="nav-item"><a class ="navbar-link" href="{% url 'admin:index'%}">Admin</a></li>
-				<li class="nav-item"><a class ="navbar-link" href="{% url 'user_app:register' %}">Registration</a></li>
+				<li class="nav-item"><a class ="nav-link" href="{% url 'admin:index'%}">Admin</a></li>
+				<li class="nav-item"><a class ="nav-link" href="{% url 'user_app:register' %}">Registration</a></li>
 
 				{% if user.is_authenticated %}
-				<li class="nav-item"><a class ="navbar-link" href="{% url 'logout' %}">Logout</a></li>
+				<li class="nav-item"><a class ="nav-link" href="{% url 'logout' %}">Logout</a></li>
 				{% else %}
-				<li class="nav-item"><a class ="navbar-link" href="{% url 'user_app:user_login' %}">LogIn</a></li>
+				<li class="nav-item"><a class ="nav-link" href="{% url 'user_app:user_login' %}">LogIn</a></li>
 				{% endif %}
 
 			</ul>
